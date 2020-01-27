@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:IlanApp"
+             x:Class="IlanApp.MenuCV">
+    <ContentView.Resources>
+        <local:ImageConverter x:Key="imageConverter" />
+        <local:BorderConverter x:Key="borderConverter" />
+        <!--<local:QuantityEnableConverter x:Key="quantityEnableConverter" />-->
+    </ContentView.Resources>
+
+
+    <!--<ContentView.GestureRecognizers>
+        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding TabButtonPressed}" CommandParameter="1"/>
+    </ContentView.GestureRecognizers>-->
+    <Frame x:Name="frame" BorderColor="{Binding Converter={StaticResource borderConverter}}" HasShadow="True"  Padding="5" Margin="5">
+        <Grid x:Name="grid" BackgroundColor="AliceBlue" WidthRequest="300"  HeightRequest="300"
+           VerticalOptions="Start"  >
+       
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*" />
+            <RowDefinition Height="40*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions> 
+        <!--<Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>-->
+
+         <Label x:Name="title" Text="{Binding Mnu.Name}"
+               Grid.Row="0" FontSize="Medium" 
+               VerticalOptions="Center" HorizontalOptions="Center"
+               TextColor="Teal" FontAttributes="Bold"/>
+
+        <!--Source="{Binding Menu.Photo, Converter={StaticResource imageConverter}}"-->
+
+            <Image x:Name="image" Grid.ColumnSpan="2"   Grid.Row="1" 
+               Source="{Binding Mnu.Photo , Converter={StaticResource imageConverter}}"
+               HorizontalOptions="Fill">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped" />
+                </Image.GestureRecognizers>
+            </Image>
+
+            <!--<StackLayout Grid.Column="0" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Center" Orientation="Horizontal" >-->
+            <!--<Label Text="Price: "  />-->
+            <Label x:Name="Price" Text="{Binding Mnu.Price, StringFormat='Price:  {0:c2}'}" 
+                   Grid.Column="0" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Center" />
+        <!--</StackLayout  >-->
+
+        <StackLayout Grid.Row="2"   Grid.Column="1" Orientation="Vertical"   VerticalOptions="Center" HorizontalOptions="FillAndExpand" >
+                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                    <ImageButton x:Name="minusButton" Source="minus.png" Margin="2" HorizontalOptions="Start" HeightRequest="20" Clicked="Minus_clicked" />
+                    <!--IsEnabled="{Binding , Converter={StaticResource quantityEnableConverter}}"/>-->
+
+                    <Label Text="{Binding Source={x:Reference Name=Slider}, Path=Value, StringFormat='Quantity:  {0:N0}'}" />
+            <!--Text="{Binding Source={x:Reference Name=slider}, Path=Value}"-->
+
+                    <ImageButton x:Name="plusButton" Source="plus.png" Margin="2" HorizontalOptions="End" HeightRequest="20" Clicked="Plus_clicked"/>
+                    <!--IsEnabled="{Binding , Converter={StaticResource quantityEnableConverter}}" />-->
+            </StackLayout> 
+            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                <Label Text="0"/>
+                <Slider x:Name="Slider" Value="{Binding Quantity}"  Minimum="0"  Maximum="10" 
+                        HorizontalOptions="FillAndExpand" ValueChanged="Slider_ValueChanged" />
+                <!--IsEnabled="{Binding , Converter={StaticResource quantityEnableConverter}}"-->
+
+                <Label Text="10"/>
+            </StackLayout>
+        </StackLayout>
+    </Grid>
+    </Frame>
+
+</ContentView>
+

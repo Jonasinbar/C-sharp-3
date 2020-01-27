@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:WrapLayout="clr-namespace:WrapLayout" 
+             x:Class="IlanApp.PayPage">
+    <!--<ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>-->
+    <Grid>
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--<ScrollView Margin="20" Grid.Column="0">
+            <WrapLayout:WrapLayout x:Name="wrapLayout"  />
+        </ScrollView>-->
+        <ListView  x:Name="lstView"  Margin="20" Grid.Column="0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="AliceBlue" Margin="10,10">
+                            <Label Text = "{Binding Mnu.Name}" FontSize="14" Margin="10,0" />
+                            <Label Text = "{Binding Mnu.Price}" FontSize="14" Margin="10,0" />
+                            <Label Text = "{Binding Quantity}"  Margin="10,0"  />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="6*"/>
+            </Grid.RowDefinitions>
+
+           
+
+            <StackLayout Orientation="Horizontal" Grid.Row="4"    VerticalOptions="Center" HorizontalOptions="Center">   
+                <Label  Text="Total for pay:" FontAttributes="Bold" FontSize="Medium"/>
+                <Label  x:Name="total" FontSize="Medium" />
+            </StackLayout>
+
+       <ImageButton Source="Pay.png" Margin="30,10" Grid.Row="6" Clicked="Pay_Clicked"/>
+
+        </Grid>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:IlanApp"
+             x:Class="IlanApp.MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:TableConverter x:Key="tableConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <!--<StackLayout>
+        --><!-- Place new controls here --><!--
+        <Label Text="Welcome to Xamarin.Forms!" 
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand" />
+    </StackLayout>-->
+    <Grid>
+        <!--https://stackoverflow.com/questions/41933999/xamarin-forms-get-image-to-fill-width-of-containing-grid-column-->
+        <Image Source="Assets/Image1.png"   Aspect ="AspectFill"
+    HorizontalOptions="Fill"  Opacity="0.7" />
+        <!--Stretch="Fill"-->
+        <Image Source="Assets/comicgruppe.png"  HorizontalOptions="End" VerticalOptions="End" Aspect="AspectFill"/>  
+        <Label  HorizontalOptions="Start"  Margin="70,55,0,0"  VerticalOptions="Start"  TextColor="#FFC52D2D" FontSize="24"  FontFamily="Harrington" Text="A Vos Fruit"></Label>
+
+        <StackLayout  HorizontalOptions="Start"  Margin="70,250,0,0"  VerticalOptions="Start"  >
+            <!--<Entry Placeholder="TableNum" HorizontalOptions="Fill" x:Name="tableNumTxt" BackgroundColor="Wheat" WidthRequest="20"/>-->
+            <!--https://docs.microsoft.com/en-us/xamarin/xamarin-forms/user-interface/picker/populating-itemssource-->
+            <Picker x:Name="TableNumPicker" ItemDisplayBinding="{Binding Converter={StaticResource tableConverter}}"
+                Title="Select a Table              " SelectedIndexChanged="TableNum_Changed" 
+                TitleColor="Red" TextColor="Wheat">
+            </Picker>
+            <Button x:Name="selectBtn" Text="Select" Clicked="Button_Clicked"  HeightRequest="50" IsEnabled="False" />
+        </StackLayout>
+    </Grid>       
+</ContentPage>

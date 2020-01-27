@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:WrapLayout="clr-namespace:WrapLayout" 
+             x:Class="IlanApp.MenuPage">
+    <!--<ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>-->
+    <Grid>
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="7*" />
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+    
+    <ScrollView Margin="20" Grid.Column="0">
+        <WrapLayout:WrapLayout x:Name="wrapLayout"  />
+    </ScrollView>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="6*"/>
+            </Grid.RowDefinitions>
+            <Label Text="Select" Grid.Row="0" FontSize="24"  FontFamily="Harrington" FontAttributes="Bold" TextColor="Teal" />
+            <StackLayout Grid.Row="1">
+                <Label Text="Gluten Free"/>
+                <Switch x:Name="Gluten" Toggled="Filter_Toggled"/>
+            </StackLayout>
+            <StackLayout Grid.Row="2">
+                <Label Text="Vegiterian"/>
+                <Switch x:Name="Vegan" Toggled="Filter_Toggled" />
+            </StackLayout>
+            <Button Grid.Row="3" VerticalOptions="EndAndExpand" Text="Order"  Clicked="Order_Clicked"/>
+
+            <ListView  x:Name="TypelstView" RowHeight="60" Grid.Row="4" Grid.RowSpan="2">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="AliceBlue" Margin="10,10">
+                                <Switch IsToggled="True"  Toggled="Filter_Toggled" /> <!--IsToggled="{Binding Check,Mode=TwoWay}"-->
+                                <Label Text = "{Binding Type.Name}" FontSize="12" />
+                             </StackLayout>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <StackLayout Orientation="Vertical" Grid.Row="6" HorizontalOptions="FillAndExpand" VerticalOptions="End" >
+                <ImageButton Source="callWaiter.png"  Margin="30,10" Clicked="callWaiter_Clicked" />
+                <ImageButton Source="Pay.png" Margin="30,10" Clicked="Pay_Clicked"/>
+            </StackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>
